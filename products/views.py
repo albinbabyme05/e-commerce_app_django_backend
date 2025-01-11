@@ -17,14 +17,17 @@ def productList(request):
     if request.GET:
         page = request.GET.get('page', 1)
     
-    product_list  = Product.objects.all() 
+    product_list  = Product.objects.order_by('priority') 
     
-    product_paginator  =  Paginator(product_list, 1)
+    product_paginator  =  Paginator(product_list, 3)
     product_list = product_paginator.get_page(page)
     
     product_dict = {'products' : product_list}
     return render(request, 'products.html', product_dict)
 
 # return detailed view of  product
-def detailed_product_view(request):
-    return render(request, 'product_details.html')
+def detailed_product_view(request, pk):
+    #fetch the product
+    product = Product.objects.get(pk=pk)
+    context = {'product' : product}
+    return render(request, 'product_details.html', context)
