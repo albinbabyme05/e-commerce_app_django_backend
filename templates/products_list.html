@@ -2,19 +2,19 @@
     <!-- All Products -->
     <!-- Feadtued Categories -->
 
+    <h2 class="title">All Products</h2>
     <div class="categories">
+        
         <div class="small-container">
+            {% for field in product_dict %}
             <div class="row">
+                
                 <div class="col-3">
-                    <img src=" {% static 'images/category-1.jpg' %}">
+                    <img src="{{field.image.url}}">
                 </div>
-                <div class="col-3">
-                    <img src=" {% static 'images/category-2.jpg' %}">
-                </div>
-                <div class="col-3">
-                    <img src=" {% static 'images/category-3.jpg' %}">
-                </div>
+                
             </div>
+            {% endfor %}
         </div>
     </div>
 
