@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . models import Product
 
 #render html pages
 
@@ -7,7 +8,10 @@ def index(request):
 
 # return product list
 def productList(request):
-    return render(request, 'products.html')
+    product_dict = {
+        'products' : Product.objects.all()
+    }
+    return render(request, 'products.html', product_dict)
 
 # return detailed view of  product
 def detailed_product_view(request):
