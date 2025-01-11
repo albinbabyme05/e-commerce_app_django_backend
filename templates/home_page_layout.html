@@ -19,4 +19,18 @@
             {% endfor %}
         </div>
     </div>
-       
+        <!-- Latest Products -->
+
+    <div class="small-container">
+        <h2 class="title">Latest Products</h2>
+        <div class="row">
+            {% for latestItem in latest_products%}
+            <div class="col-4">
+                <a href="{% url 'product_details' latestItem.id %}"><img src=" {{latestItem.image.url}}"></a>
+                <h4>{{ latestItem.title }}</h4> 
+                <p>${{latestItem.price}}</p>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
