@@ -13,7 +13,14 @@ def show_account(request):
         password = request.POST.get('password')
         address = request.POST.get('address')
         
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists. Please choose a different username.")
+            return render(request, 'account.html')
 
+        # Check if email already exists (optional)
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "An account with this email already exists.")
+            return render(request, 'account.html')
         
         user_reg = User.objects.create_user(
             username=username,
