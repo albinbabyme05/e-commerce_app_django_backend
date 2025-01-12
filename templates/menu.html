@@ -16,4 +16,9 @@
     </nav>
     <a href="{% url 'cart' %}"><img src=" {% static 'images/cart.png' %}" width="30px" height="30px"></a>
     <img src=" {% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+    {% if user.is_authenticated %}
+    <li><a>👨{{user.username}}</a></li>
+    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+
+    {% endif %}
 </div>
