@@ -16,12 +16,15 @@ Account
                 <div class="col-2">
                     <img src=" {% static 'images/image1.png' %}" width="100%">
                 </div>
-                {% if messages %}
-                    <div class="messages">
-                {% for message in messages %}
-                    <p class="error">{{ message }}</p>
-                {% endfor %}
                 <div class="col-2">
+                        <!-- Display Error Messages -->
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <p class="error">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <div class="form-container">
                         <div class="form-btn">
                             <span onclick="login()">Login</span>
@@ -40,7 +43,7 @@ Account
                             {% csrf_token %}
                             <input type="text" name="username" required placeholder="Username">
                             <input type="email" name="email" required placeholder="Email">
-                            <input type="address" name="address" required  placeholder="address">
+                            
                             <input type="password" name="password" required  placeholder="Password">
                             <input type="phone" name="phone" required  placeholder="phone">
                             <button type="submit" name="register" class="btn">Register</button>
@@ -51,7 +54,7 @@ Account
         </div>
         
     </div>
-{% endif %}
+
     </div>
 
     <script>

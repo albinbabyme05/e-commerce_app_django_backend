@@ -11,7 +11,7 @@ def show_account(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         password = request.POST.get('password')
-        address = request.POST.get('address')
+        
         
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already exists. Please choose a different username.")
@@ -32,7 +32,7 @@ def show_account(request):
         customer=Customer.objects.create(
             user=user_reg,
             phone=phone,
-            address=address
+           
         )
         return redirect('home')
         
