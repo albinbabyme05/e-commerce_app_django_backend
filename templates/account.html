@@ -16,7 +16,11 @@ Account
                 <div class="col-2">
                     <img src=" {% static 'images/image1.png' %}" width="100%">
                 </div>
-
+                {% if messages %}
+                    <div class="messages">
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
                 <div class="col-2">
                     <div class="form-container">
                         <div class="form-btn">
