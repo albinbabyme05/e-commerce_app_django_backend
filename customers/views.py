@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout as auth_logout
 from .models import Customer
 
 def show_account(request):
@@ -35,7 +35,7 @@ def show_account(request):
             phone=phone
         )
         messages.success(request, "Registration successful! You can now log in.")
-        return redirect('show_account')  # Redirect back to the account page for login
+        return redirect('account')  # Redirect back to the account page for login
 
     # Handle Login
     elif request.POST and 'login' in request.POST:
@@ -46,7 +46,6 @@ def show_account(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, "Login successful!")
             return redirect('home')  # Redirect to the homepage or dashboard
         else:
             messages.error(request, "Invalid username or password.")
@@ -54,3 +53,12 @@ def show_account(request):
 
     # Render the account page for GET requests
     return render(request, 'account.html')
+
+
+def user_logout(request):
+    auth_logout(request)
+    return redirect('home')
+  
+  
+def home(request):
+    return render(request, 'index.html')
